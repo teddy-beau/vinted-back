@@ -1,11 +1,13 @@
 // PACKAGES IMPORT & INIT.
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const formidable = require("express-formidable");
 const mongoose = require("mongoose");
 const cloudinary = require("cloudinary").v2;
 
 const app = express();
+app.use(cors());
 app.use(formidable());
 
 // CONNECTION TO MONGODB & CLOUDINARY
