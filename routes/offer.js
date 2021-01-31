@@ -12,7 +12,7 @@ const User = require("../models/User");
 const Offer = require("../models/Offer");
 
 // ROUTE POST: PUBLISHING AN OFFER
-router.post("/vinted/offer/publish", isAuthenticated, async (req, res) => {
+router.post("/offer/publish", isAuthenticated, async (req, res) => {
    try {
       // console.log(req.user); // From isAuthenticated middleware
 
@@ -118,7 +118,7 @@ router.delete(
 );
 
 // ROUTE PUT: UPDATE OFFER
-router.put("/vinted/offer/update/:id", isAuthenticated, async (req, res) => {
+router.put("/offer/update/:id", isAuthenticated, async (req, res) => {
    try {
       const offerToUpdate = await Offer.findById(req.params.id);
 
@@ -230,7 +230,7 @@ router.put("/vinted/offer/update/:id", isAuthenticated, async (req, res) => {
 });
 
 // ROUTE GET OFFER BY ID
-router.get("/vinted/offer/:_id", async (req, res) => {
+router.get("/offer/:_id", async (req, res) => {
    try {
       // Get the offer from DB by ID
       const offerToFind = await Offer.findById(req.params._id).populate({

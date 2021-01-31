@@ -7,7 +7,7 @@ const User = require("../models/User");
 const Offer = require("../models/Offer");
 
 // ROUTE GET: ALL OFFERS (SORTING OPTIONS)
-router.get("/vinted/offers", async (req, res) => {
+router.get("/offers", async (req, res) => {
    try {
       // Object where all filters to be used will be stored
       let filters = {};
@@ -69,7 +69,7 @@ router.get("/vinted/offers", async (req, res) => {
 });
 
 // ROUTE DELETE ALL
-router.delete("/vinted/offer/delete-all", async (req, res) => {
+router.delete("/offer/delete-all", async (req, res) => {
    try {
       let offerToDelete = await Offer.deleteMany();
       res.status(200).json({
