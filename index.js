@@ -8,7 +8,7 @@ const cloudinary = require("cloudinary").v2;
 
 const app = express();
 app.use(cors());
-app.use(formidable());
+app.use(formidable({ multiples: true }));
 
 // CONNECTION TO MONGODB & CLOUDINARY
 mongoose.connect(process.env.MONGODB_URI, {
@@ -41,5 +41,5 @@ app.all("*", (req, res) => {
 
 // SERVER
 app.listen(process.env.PORT, () => {
-    console.log("Server started");
+    console.log(`Server started on port ${process.env.PORT}`);
 });
