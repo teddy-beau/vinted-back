@@ -39,7 +39,7 @@ router.get("/offers", async (req, res) => {
          sortingOption = { product_price: -1 };
       }
       // Results to display on each page
-      let resultLimit = 4;
+      let resultLimit = 0;
       if (req.query.display) {
          resultLimit = Number(req.query.display);
       }
@@ -56,9 +56,9 @@ router.get("/offers", async (req, res) => {
       }
 
       const allOffers = await Offer.find(filters)
-         //  .populate({ path: "owner", select: "account" })
+         .populate({ path: "owner", select: "account" })
          .sort(sortingOption)
-         .select("product_name product_price")
+         // .select("product_name product_price")
          .skip(resultSkip)
          .limit(resultLimit);
 
