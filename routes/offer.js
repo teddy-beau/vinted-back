@@ -83,39 +83,33 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
 });
 
 // ROUTE DELETE
-router.delete(
-   "/vinted/offer/delete/:_id",
-   isAuthenticated,
-   async (req, res) => {
-      try {
-         let offerToDelete = await Offer.findById(req.params._id);
-         console.log(offerToDelete);
-         if (offerToDelete) {
-            // Delete assets with a public ID that starts with the given prefix
-            await cloudinary.api.delete_resources_by_prefix(
-               `vinted/offers/${req.params._id}`
-            );
-            // Delete the empty folder
-            await cloudinary.api.delete_folder(
-               `vinted/offers/${req.params._id}`
-            );
+router.delete("/offer/delete/:_id", isAuthenticated, async (req, res) => {
+   try {
+      let offerToDelete = await Offer.findById(req.params._id);
+      console.log(offerToDelete);
+      if (offerToDelete) {
+         // Delete assets with a public ID that starts with the given prefix
+         await cloudinary.api.delete_resources_by_prefix(
+            `vinted/offers/${req.params._id}`
+         );
+         // Delete the empty folder
+         await cloudinary.api.delete_folder(`vinted/offers/${req.params._id}`);
 
-            // Delete the offer from the DB
-            offerToDelete = await Offer.findByIdAndDelete(req.params._id);
+         // Delete the offer from the DB
+         offerToDelete = await Offer.findByIdAndDelete(req.params._id);
 
-            res.status(200).json({
-               message: "Your offer has been successfully deleted.",
-            });
-         } else {
-            res.status(400).json({
-               message: "Bad request",
-            });
-         }
-      } catch (error) {
-         res.status(400).json({ error: error.message });
+         res.status(200).json({
+            message: "Your offer has been successfully deleted.",
+         });
+      } else {
+         res.status(400).json({
+            message: "Bad request",
+         });
       }
+   } catch (error) {
+      res.status(400).json({ error: error.message });
    }
-);
+});
 
 // ROUTE PUT: UPDATE OFFER
 router.put("/offer/update/:id", isAuthenticated, async (req, res) => {
