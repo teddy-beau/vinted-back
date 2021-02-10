@@ -40,8 +40,9 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
       // newOffer.product_image = result;
 
       // Upload of multiple pictures
+      console.log(req.files);
       const fileKeys = Object.keys(req.files); // [ 'picture 1', 'picture 2', ... ]
-      let results = {};
+      let results = [];
 
       // If there are no keys for req.files
       if (fileKeys.length === 0) {
@@ -63,7 +64,8 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
                   public_id: `${fileKey}`,
                });
                console.log(`${fileKey} uploaded`);
-               results[fileKey] = result;
+               results.push({ [fileKey]: result });
+
                //    console.log("result", result);
 
                // If there are no more pictures to upload, next!

@@ -18,7 +18,7 @@ const Offer = mongoose.model("Offer", {
    product_details: Array,
    product_image: {
       type: mongoose.Schema.Types.Mixed,
-      default: {},
+      default: [],
    },
    owner: {
       type: mongoose.Schema.Types.ObjectId,

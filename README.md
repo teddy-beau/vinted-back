@@ -2,6 +2,8 @@
 
 Express, Express Formidable, MongoDB, Cloudinary
 
+Frontend: https://github.com/teddy-beau/vinted-front
+
 ## OFFER ROUTES
 
 ### POST: PUBLISHING AN OFFER
