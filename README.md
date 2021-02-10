@@ -1,9 +1,6 @@
 # Backend for a Vinted clone
 
-Express
-Express Formidable
-MongoDB
-Cloudinary
+Express, Express Formidable, MongoDB, Cloudinary
 
 ## OFFER ROUTES
 
