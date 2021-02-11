@@ -12,16 +12,16 @@ app.use(formidable({ multiples: true }));
 
 // CONNECTION TO MONGODB & CLOUDINARY
 mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
+   useNewUrlParser: true,
+   useUnifiedTopology: true,
+   useCreateIndex: true,
 });
 
 //// Imported here so can be used in several routes
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
+   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+   api_key: process.env.CLOUDINARY_API_KEY,
+   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 // ROUTES IMPORT
@@ -36,10 +36,10 @@ app.use(offersRoute);
 
 // WRONG ROUTES
 app.all("*", (req, res) => {
-    res.status(404).json({ error: "Error, page not found!" });
+   res.status(404).json({ error: "Error, page not found!" });
 });
 
 // SERVER
-app.listen(process.env.PORT, () => {
-    console.log(`Server started on port ${process.env.PORT}`);
+app.listen(process.env.PORT || 3000, () => {
+   console.log(`Server started on port ${process.env.PORT}`);
 });

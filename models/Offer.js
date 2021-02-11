@@ -16,7 +16,7 @@ const Offer = mongoose.model("Offer", {
       max: 100000,
    },
    product_details: Array,
-   product_image: {
+   product_pictures: {
       type: mongoose.Schema.Types.Mixed,
       default: [],
    },

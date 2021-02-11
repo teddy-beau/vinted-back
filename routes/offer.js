@@ -37,7 +37,7 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
       //     folder: `/vinted/offers/${newOffer._id}`,
       // }); // Cloudinary upload result
       // // Adding the picture's details to the newOffer (better to save the whole result in case we need other picture data)
-      // newOffer.product_image = result;
+      // newOffer.product_pictures = result;
 
       // Upload of multiple pictures
       console.log(req.files);
@@ -61,17 +61,15 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
                const filePath = req.files[fileKey].path; // Local path to the picture(s)
                const result = await cloudinary.uploader.upload(filePath, {
                   folder: `/vinted/offers/${newOffer._id}`,
-                  public_id: `${fileKey}`,
+                  // public_id: `${fileKey}`,
                });
                console.log(`${fileKey} uploaded`);
                result.public_name = fileKey;
                results.push(result);
 
-               //    console.log("result", result);
-
                // If there are no more pictures to upload, next!
                if (Object.keys(results).length === fileKeys.length) {
-                  newOffer.product_image = results;
+                  newOffer.product_pictures = results;
                   // Save the newOffer with files details in the DB
                   await newOffer.save();
                   console.log("Pictures details saved in DB");
@@ -165,7 +163,7 @@ router.put("/offer/update/:id", isAuthenticated, async (req, res) => {
 
       // Updating images
       const fileKeys = Object.keys(req.files); // [ 'picture 1', 'picture 2', ... ]
-      let results = offerToUpdate.product_image;
+      let results = offerToUpdate.product_pictures;
       // console.log(results);
 
       // If there are no keys for req.files
@@ -182,9 +180,10 @@ router.put("/offer/update/:id", isAuthenticated, async (req, res) => {
                   message: "The file is missing",
                });
             } else {
-               // console.log(offerToUpdate.product_image[fileKey].public_id);
+               // console.log(offerToUpdate.product_pictures[fileKey].public_id);
                if (
-                  offerToUpdate.product_image[fileKey].public_id !== undefined
+                  offerToUpdate.product_pictures[fileKey].public_id !==
+                  undefined
                ) {
                   console.log("Entered: if public_id isn't undefined");
                   // The public_id exists
@@ -207,12 +206,12 @@ router.put("/offer/update/:id", isAuthenticated, async (req, res) => {
 
                // If there are no more pictures to upload, next!
                if (Object.keys(results).length === fileKeys.length) {
-                  offerToUpdate.product_image = results;
+                  offerToUpdate.product_pictures = results;
                   // Save the offerToUpdate with files details in the DB
                   await offerToUpdate.save();
                   console.log(
                      "Picture details saved in DB",
-                     offerToUpdate.product_image
+                     offerToUpdate.product_pictures
                   );
                   res.status(201).json({
                      message: "Offer updated successfully.",
