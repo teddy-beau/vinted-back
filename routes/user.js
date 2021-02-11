@@ -91,6 +91,7 @@ router.post("/user/login", async (req, res) => {
             res.status(200).json({
                message:
                   "Login successful, you'll be redirected to your account shortly.",
+               token: user.token,
             });
          } else {
             res.status(400).json({
