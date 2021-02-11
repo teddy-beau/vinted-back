@@ -89,9 +89,11 @@ router.post("/user/login", async (req, res) => {
          // Compare new hash with the one in the DB
          if (newHash === user.hash) {
             res.status(200).json({
-               message:
-                  "Login successful, you'll be redirected to your account shortly.",
-               token: user.token,
+               // message:
+               //    "Login successful, you'll be redirected to your account shortly.",
+               _id: newUser._id,
+               token: newUser.token,
+               account: newUser.account,
             });
          } else {
             res.status(400).json({
