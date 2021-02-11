@@ -39,6 +39,6 @@ WARNING: use with caution! This will delete all offers from the database!
 
 /user/sign-up
 
-### POST : SIGN IN
+### POST : LOG IN
 
-/user/sign-in
+/user/login

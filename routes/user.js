@@ -76,8 +76,8 @@ router.post("/user/sign-up", async (req, res) => {
    }
 });
 
-// Route POST : Sign In
-router.post("/user/sign-in", async (req, res) => {
+// Route POST : LOG IN
+router.post("/user/login", async (req, res) => {
    try {
       // Find the user with email
       const user = await User.findOne({ email: req.fields.email });
