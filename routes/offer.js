@@ -61,7 +61,7 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
                const filePath = req.files[fileKey].path; // Local path to the picture(s)
                const result = await cloudinary.uploader.upload(filePath, {
                   folder: `/vinted/offers/${newOffer._id}`,
-                  // public_id: `${fileKey}`,
+                  public_id: `${fileKey}`,
                });
                console.log(`${fileKey} uploaded`);
                result.public_name = fileKey;
@@ -163,7 +163,7 @@ router.put("/offer/update/:id", isAuthenticated, async (req, res) => {
 
       // Updating images
       const fileKeys = Object.keys(req.files); // [ 'picture 1', 'picture 2', ... ]
-      let results = offerToUpdate.product_pictures;
+      let results = offerToUpdate.product_pictures; // Array of Objects
       // console.log(results);
 
       // If there are no keys for req.files
@@ -180,29 +180,50 @@ router.put("/offer/update/:id", isAuthenticated, async (req, res) => {
                   message: "The file is missing",
                });
             } else {
-               // console.log(offerToUpdate.product_pictures[fileKey].public_id);
-               if (
-                  offerToUpdate.product_pictures[fileKey].public_id !==
-                  undefined
-               ) {
-                  console.log("Entered: if public_id isn't undefined");
-                  // The public_id exists
+               //
+               //
+               if (offerToUpdate.product_pictures.length === 0) {
                   const filePath = req.files[fileKey].path; // Local path to the picture(s)
                   const result = await cloudinary.uploader.upload(filePath, {
                      folder: `/vinted/offers/${offerToUpdate._id}/`,
                      public_id: `${fileKey}`,
                   });
                   console.log("Pictures uploaded");
-                  results[fileKey] = result;
-                  // The public_id doesn't exist
+                  results.push(result);
                } else {
-                  console.log("Entered: else");
-                  const filePath = req.files[fileKey].path; // Local path to the picture(s)
-                  const result = await cloudinary.uploader.upload(filePath, {
-                     folder: `/vinted/offers/${offerToUpdate._id}`,
-                     public_id: `${fileKey}`,
+                  offerToUpdate.product_pictures.forEach(async (picture) => {
+                     if (picture.public_name === fileKey) {
+                        // If there's a match
+                        console.log("Entered: if there's a match");
+                        const filePath = req.files[fileKey].path; // Local path to the picture(s)
+                        const result = await cloudinary.uploader.upload(
+                           filePath,
+                           {
+                              folder: `/vinted/offers/${offerToUpdate._id}/`,
+                              public_id: `${fileKey}`,
+                           }
+                        );
+                        console.log("Pictures uploaded");
+                        results[picture] = result;
+                     } else {
+                        // There's no match
+                        console.log("Entered: else");
+                        const filePath = req.files[fileKey].path; // Local path to the picture(s)
+                        const result = await cloudinary.uploader.upload(
+                           filePath,
+                           {
+                              folder: `/vinted/offers/${offerToUpdate._id}`,
+                              public_id: `${fileKey}`,
+                           }
+                        );
+                        console.log("Pictures uploaded");
+                        results.push(result);
+                     }
                   });
                }
+
+               //
+               //
 
                // If there are no more pictures to upload, next!
                if (Object.keys(results).length === fileKeys.length) {
