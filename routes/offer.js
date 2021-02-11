@@ -181,7 +181,6 @@ router.put("/offer/update/:id", isAuthenticated, async (req, res) => {
                });
             } else {
                //
-               //
                if (offerToUpdate.product_pictures.length === 0) {
                   const filePath = req.files[fileKey].path; // Local path to the picture(s)
                   const result = await cloudinary.uploader.upload(filePath, {
@@ -221,9 +220,6 @@ router.put("/offer/update/:id", isAuthenticated, async (req, res) => {
                      }
                   });
                }
-
-               //
-               //
 
                // If there are no more pictures to upload, next!
                if (Object.keys(results).length === fileKeys.length) {
