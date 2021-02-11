@@ -29,7 +29,7 @@ router.post("/user/signup", async (req, res) => {
             const token = uid2(64);
             // console.log(salt);
             // console.log(hash);
-            // console.log(token);
+            // console.log("token", token);
 
             // User creation
             const newUser = new User({
@@ -44,13 +44,18 @@ router.post("/user/signup", async (req, res) => {
             });
 
             // Upload profile picture
-            let pictureToUpload = req.files.avatar.path; // Local link to picture
-            const result = await cloudinary.uploader.upload(pictureToUpload, {
-               folder: `/vinted/users/${newUser._id}`,
-            }); // Cloudinary upload result
+            if (req.fields.avatar) {
+               let pictureToUpload = req.files.avatar.path; // Local link to picture
+               const result = await cloudinary.uploader.upload(
+                  pictureToUpload,
+                  {
+                     folder: `/vinted/users/${newUser._id}`,
+                  }
+               ); // Cloudinary upload result
 
-            // Adding the picture's details to the newUser (better to save the whole result in case we need other picture data)
-            newUser.account.avatar = result;
+               // Adding the picture's details to the newUser (better to save the whole result in case we need other picture data)
+               newUser.account.avatar = result;
+            }
 
             await newUser.save();
 
