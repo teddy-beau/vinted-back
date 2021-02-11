@@ -64,7 +64,8 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
                   public_id: `${fileKey}`,
                });
                console.log(`${fileKey} uploaded`);
-               results.push({ [fileKey]: result });
+               result.public_name = fileKey;
+               results.push(result);
 
                //    console.log("result", result);
 
