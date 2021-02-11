@@ -14,7 +14,7 @@ const User = require("../models/User");
 const Offer = require("../models/Offer");
 
 // ROUTE POST: SIGN UP
-router.post("/user/sign-up", async (req, res) => {
+router.post("/user/signup", async (req, res) => {
    try {
       // Checking user existence
       const user = await User.findOne({ email: req.fields.email });
@@ -90,7 +90,7 @@ router.post("/user/login", async (req, res) => {
          if (newHash === user.hash) {
             res.status(200).json({
                message:
-                  "Sign in successful, you'll be redirected to your account shortly.",
+                  "Login successful, you'll be redirected to your account shortly.",
             });
          } else {
             res.status(400).json({
