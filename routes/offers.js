@@ -40,8 +40,8 @@ router.get("/offers", async (req, res) => {
       }
       // Results to display on each page
       let resultLimit = 0;
-      if (req.query.display) {
-         resultLimit = Number(req.query.display);
+      if (req.query.limit) {
+         resultLimit = Number(req.query.limit);
       }
       // Calculating skip value
       let resultSkip = 0;
