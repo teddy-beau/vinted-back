@@ -58,7 +58,6 @@ router.post("/user/signup", async (req, res) => {
             }
 
             await newUser.save();
-
             console.log("New user created", newUser);
 
             res.status(201).json({
