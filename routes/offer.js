@@ -34,6 +34,9 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
       // Upload of multiple pictures
       console.log(req.files);
       const fileKeys = Object.keys(req.files); // [ 'picture 1', 'picture 2', ... ]
+      console.log("req.files", req.files);
+      console.log("fileKeys", fileKeys);
+
       let results = [];
 
       // If there are no keys for req.files
@@ -155,8 +158,8 @@ router.put("/offer/update/:id", isAuthenticated, async (req, res) => {
 
       // Updating images
       const fileKeys = Object.keys(req.files); // [ 'picture 1', 'picture 2', ... ]
-      console.log("req.files", req.files);
-      console.log("fileKeys", fileKeys);
+      // console.log("req.files", req.files);
+      // console.log("fileKeys", fileKeys);
       let results = offerToUpdate.product_pictures; // Array of Objects
       console.log("rrsults", results);
 
