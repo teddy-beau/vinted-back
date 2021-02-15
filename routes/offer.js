@@ -31,14 +31,6 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
          owner: req.user, // Get all user info to avoid populate issues
       });
 
-      // // Upload single picture
-      // let pictureToUpload = req.files.picture.path; // Local link to picture
-      // const result = await cloudinary.uploader.upload(pictureToUpload, {
-      //     folder: `/vinted/offers/${newOffer._id}`,
-      // }); // Cloudinary upload result
-      // // Adding the picture's details to the newOffer (better to save the whole result in case we need other picture data)
-      // newOffer.product_pictures = result;
-
       // Upload of multiple pictures
       console.log(req.files);
       const fileKeys = Object.keys(req.files); // [ 'picture 1', 'picture 2', ... ]
@@ -163,19 +155,21 @@ router.put("/offer/update/:id", isAuthenticated, async (req, res) => {
 
       // Updating images
       const fileKeys = Object.keys(req.files); // [ 'picture 1', 'picture 2', ... ]
+      console.log("req.files", req.files);
+      console.log("fileKeys", fileKeys);
       let results = offerToUpdate.product_pictures; // Array of Objects
-      // console.log(results);
+      console.log("rrsults", results);
 
       // If there are no keys for req.files
       if (fileKeys.length === 0) {
          await offerToUpdate.save();
          res.status(201).json(offerToUpdate);
-         // console.log("Saved without pictures");
+         console.log("Saved without pictures");
       } else {
          fileKeys.forEach(async (fileKey) => {
             // Making sure a file is associated with the files keys
             if (req.files[fileKey].size === 0) {
-               // console.log("File key exist but no file uploaded");
+               console.log("File key exist but no file uploaded");
                res.status(400).json({
                   message: "The file is missing",
                });
