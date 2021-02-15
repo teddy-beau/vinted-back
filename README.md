@@ -1,6 +1,6 @@
 # Backend for a Vinted clone
 
-Express, Express Formidable, MongoDB, Cloudinary
+Express, Express Formidable, Mongoose, Cloudinary, Dotenv
 
 Frontend: https://github.com/teddy-beau/vinted-front
 
@@ -30,7 +30,7 @@ Frontend: https://github.com/teddy-beau/vinted-front
 
 ### DELETE ALL
 
-/offer/delete-all
+/offers/delete-all
 WARNING: use with caution! This will delete all offers from the database!
 
 ## USER ROUTES

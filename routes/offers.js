@@ -69,7 +69,7 @@ router.get("/offers", async (req, res) => {
 });
 
 // ROUTE DELETE ALL
-router.delete("/offer/delete-all", async (req, res) => {
+router.delete("/offers/delete-all", async (req, res) => {
    try {
       let offerToDelete = await Offer.deleteMany();
       res.status(200).json({
