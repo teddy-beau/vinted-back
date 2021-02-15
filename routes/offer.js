@@ -32,9 +32,9 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
       });
 
       // Upload of multiple pictures
-      console.log(req.files);
-      const fileKeys = Object.keys(req.files); // [ 'picture 1', 'picture 2', ... ]
       console.log("req.files", req.files);
+      const fileKeys = Object.keys(req.files); // [ 'picture 1', 'picture 2', ... ]
+
       console.log("fileKeys", fileKeys);
 
       let results = [];
