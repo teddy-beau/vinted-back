@@ -42,3 +42,7 @@ WARNING: use with caution! This will delete all offers from the database!
 ### POST : LOG IN
 
 /user/login
+
+## CHECKOUT ROUTE
+
+/checkout

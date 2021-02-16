@@ -8,7 +8,6 @@ const cloudinary = require("cloudinary").v2;
 const isAuthenticated = require("../middleware/isAuthenticated");
 
 // MODELS IMPORT
-const User = require("../models/User");
 const Offer = require("../models/Offer");
 
 // ROUTE POST: PUBLISHING AN OFFER
