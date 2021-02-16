@@ -10,7 +10,7 @@ const isAuthenticated = require("../middleware/isAuthenticated");
 router.post("/checkout", isAuthenticated, async (req, res) => {
    const stripeToken = req.fields.stripeToken;
    const response = await stripe.charges.create({
-      amount: Number(req.fields.productPrice) * 100,
+      amount: Number(req.fields.total) * 100,
       currency: "eur",
       description: req.fields.productTitle,
       source: stripeToken,
