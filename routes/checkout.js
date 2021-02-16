@@ -12,7 +12,7 @@ router.post("/checkout", isAuthenticated, async (req, res) => {
    const response = await stripe.charges.create({
       amount: Number(req.fields.total) * 100,
       currency: "eur",
-      description: `VINTED | ${req.fields.productTitle}`,
+      description: `VINTED: ${req.fields.productTitle}`,
       source: stripeToken,
    });
    console.log(response.status);
