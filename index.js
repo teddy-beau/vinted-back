@@ -25,14 +25,15 @@ cloudinary.config({
 });
 
 // ROUTES IMPORT
+
+// const testRoute = require("./test");
+// app.use(testRoute);
+
 const userRoute = require("./routes/user");
 app.use(userRoute);
 
 const offerRoute = require("./routes/offer");
 app.use(offerRoute);
-
-const testRoute = require("./routes/test");
-app.use(testRoute);
 
 const offersRoute = require("./routes/offers");
 app.use(offersRoute);
