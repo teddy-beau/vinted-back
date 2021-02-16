@@ -10,7 +10,7 @@ const isAuthenticated = require("../middleware/isAuthenticated");
 // MODELS IMPORT
 const Offer = require("../models/Offer");
 
-router.post("/offer/publish", isAuthenticated, async (req, res) => {
+router.post("/test", isAuthenticated, async (req, res) => {
    try {
       // Creating the new offer (and its ID)
       const newOffer = new Offer({
