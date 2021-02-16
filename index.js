@@ -34,12 +34,15 @@ app.use(offerRoute);
 const offersRoute = require("./routes/offers");
 app.use(offersRoute);
 
+const checkoutRoute = require("./routes/checkout");
+app.use(checkoutRoute);
+
 // WRONG ROUTES
 app.all("*", (req, res) => {
    res.status(404).json({ error: "Error, page not found!" });
 });
 
 // SERVER
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 3100, () => {
    console.log(`Server started on port ${process.env.PORT}`);
 });
