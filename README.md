@@ -1,48 +1,63 @@
-# Backend for a Vinted clone
+# Vinted Clone - Backend
 
-Express, Express Formidable, Mongoose, Cloudinary, Dotenv
+This This project is based on Vinted, an online marketplace for secondhand clothing.
 
-Frontend: https://github.com/teddy-beau/vinted-front
+This repository is for the backend API of the project only. For more information about this projects, its features, some screenshot, and a link to the live version, please visit the [frontend repository](https://github.com/teddy-beau/vinted-front).
 
-## OFFER ROUTES
+<div align="center"><img src="https://github.com/teddy-beau/vinted-front/blob/main/_preview/vinted-login-buy.gif" alt="Vinted GIF" width="400" /></div>
 
-### POST: PUBLISHING AN OFFER
+## Stack & Dependencies
 
-/offer/publish
+This API was built with Node JS and uses the following packages:
 
-### DELETE ONE
+-  Express
+-  Express Formidable
+-  Mongoose
+-  Stripe
+-  Cloudinary
+-  dotenv
+-  cors
+-  UID2
 
-/offer/delete/:\_id
+## Available Routes
 
-### PUT: UPDATE OFFER
+**Offer**
 
-/offer/update/:id
+-  Publishing an offer: /offer/publish
+-  Delete an offer based on its id: /offer/delete/:\_id
+-  Update an offer based on its id: /offer/update/:id
+-  Get an offer's details: /offer/:\_id
 
-### GET: OFFER BY ID
+**Offers**
 
-/offer/:\_id
+-  Get details of all offers with sorting options: /offers
+-  Delete all offers: /offers/delete-all _WARNING: use with caution! This will delete all offers from the database!_
 
-## OFFERS ROUTES
+**Users**
 
-### GET: ALL OFFERS (SORTING OPTIONS)
+-  Sign up: /user/signup
+-  Login: /user/login
 
-/offers
+**Checkout**
 
-### DELETE ALL
+-  Payment with Stripe: /checkout
 
-/offers/delete-all
-WARNING: use with caution! This will delete all offers from the database!
+## Setup Instructions
 
-## USER ROUTES
+Clone this repository :
 
-### POST: SIGN UP
+```
+git clone https://github.com/teddy-beau/vinted-back.git
+```
 
-/user/signup
+Install dependencies with yarn:
 
-### POST : LOG IN
+```
+npm install
+```
 
-/user/login
+Once the installation is complete, run it:
 
-## CHECKOUT ROUTE
-
-/checkout
+```
+npx nodemon index.js
+```

@@ -15,7 +15,6 @@ router.post("/checkout", isAuthenticated, async (req, res) => {
       description: `VINTED: ${req.fields.productTitle}`,
       source: stripeToken,
    });
-   console.log(response.status);
 
    // TODO : IMPLEMENT ORDER CREATION IN DB
 

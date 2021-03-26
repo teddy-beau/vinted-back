@@ -35,10 +35,7 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
          });
 
          // Upload of multiple pictures
-         console.log("req.files", req.files);
          const fileKeys = Object.keys(req.files); // [ 'picture 1', 'picture 2', ... ]
-
-         console.log("fileKeys", fileKeys);
 
          let results = [];
 
@@ -79,7 +76,7 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
 router.delete("/offer/delete/:_id", isAuthenticated, async (req, res) => {
    try {
       let offerToDelete = await Offer.findById(req.params._id);
-      console.log(offerToDelete);
+
       if (offerToDelete) {
          // Delete assets with a public ID that starts with the given prefix
          await cloudinary.api.delete_resources_by_prefix(
@@ -155,10 +152,8 @@ router.put("/offer/update/:id", isAuthenticated, async (req, res) => {
 
       // Updating images
       const fileKeys = Object.keys(req.files); // [ 'picture 1', 'picture 2', ... ]
-      // console.log("req.files", req.files);
-      // console.log("fileKeys", fileKeys);
+
       let results = offerToUpdate.product_pictures; // Array of Objects
-      console.log("rrsults", results);
 
       // If there are no keys for req.files
       if (fileKeys.length === 0) {
@@ -244,8 +239,6 @@ router.get("/offer/:_id", async (req, res) => {
          path: "owner",
          select: "account",
       });
-      console.log(offerToFind);
-      // console.log(req.params);
 
       res.status(200).json(offerToFind);
    } catch (error) {
