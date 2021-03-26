@@ -1,10 +1,12 @@
 # Vinted Clone - Backend
 
+<div align="center">
+
 This This project is based on Vinted, an online marketplace for secondhand clothing.
 
-This repository is for the backend API of the project only. For more information about this projects, its features, some screenshot, and a link to the live version, please visit the [frontend repository](https://github.com/teddy-beau/vinted-front).
+This repository is for the backend API of the project only. For more information about this projects, its features, some screenshot, and a link to the live version, please visit the 👉 [frontend repository](https://github.com/teddy-beau/vinted-front) 👈.
 
-<div align="center"><img src="https://github.com/teddy-beau/vinted-front/blob/main/_preview/vinted-login-buy.gif" alt="Vinted GIF" width="400" /></div>
+<img src="https://github.com/teddy-beau/vinted-front/blob/main/_preview/vinted-login-buy.gif" alt="Vinted GIF" width="400" /></div>
 
 ## Stack & Dependencies
 
