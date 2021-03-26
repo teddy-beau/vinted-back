@@ -2,7 +2,7 @@
 
 <div align="center">
 
-This This project is based on Vinted, an online marketplace for secondhand clothing.
+Project is based on Vinted, an online marketplace for secondhand clothing.
 
 This repository is for the backend API of the project only. For more information about this projects, its features, some screenshot, and a link to the live version, please visit the 👉 [frontend repository](https://github.com/teddy-beau/vinted-front) 👈
 
