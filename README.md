@@ -52,7 +52,7 @@ Clone this repository :
 git clone https://github.com/teddy-beau/vinted-back.git
 ```
 
-Install dependencies with yarn:
+Install dependencies:
 
 ```
 npm install
